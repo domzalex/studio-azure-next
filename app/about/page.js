@@ -69,7 +69,7 @@ export default function Page() {
                         >
                             <div className='w-4/5 flex flex-col gap-8 sm:w-full'>
                                 <h1 className='text-blue-500 font-bold 2xl:text-6xl sm:text-4xl xl:text-5xl lg:text-5xl'>Website<br></br>Development 🖥️</h1>
-                                <h2 className='text-blue-500 text-xl font-light px-3 border-l border-blue-500 ml-1 leading-9 sm:text-lg'>Our software developer is passionate about building websites. Simple as. Whether it's optimizing an already existing websitesite or building something unique from the ground up, <span className='font-bold'>Studio Azure</span> has you covered.</h2>
+                                <h2 className='text-blue-500 text-xl font-light px-3 border-l border-blue-500 ml-1 leading-9 sm:text-lg'>Our software developer is passionate about building websites. Simple as. Whether it's optimizing an already existing website or building something unique from the ground up, <span className='font-bold'>Studio Azure</span> has you covered.</h2>
                             </div>
                         </motion.div>
                     )}

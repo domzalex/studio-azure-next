@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -98,7 +98,7 @@ export default function Page() {
                                 <h1 className='w-full font-black xl:text-8xl text-white  xl:text-7xl lg:text-7xl  sm:text-6xl'>Where<br></br>Every Pixel<br></br>is Placed<br></br>by Hand. 👋</h1>
                                 <div className="relative flex items-center gap-16">
                                     <h2 className='text-2xl font-bold text-white w-3/5'>Come and see what we can do for you. </h2>
-                                    <Link className="text-white font-bold bg-black p-4 py-2 rounded-lg hover:bg-blue-600 sm:hover:bg-black" href="/about">Services </Link>
+                                    <Link className="text-white font-bold bg-black p-4 py-2 rounded-lg hover:bg-blue-500 sm:hover:bg-black" href="/about">Services </Link>
                                 </div>
                             </div>
                             <div id="contact" className='w-2/5 sm:w-full sm:h-dvh sm:items-center sm:flex sm:max-w-[640px]'>
