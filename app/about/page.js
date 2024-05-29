@@ -19,7 +19,7 @@ export default function Page() {
                 >
                     <div className='w-3/4 flex flex-col gap-6 sm:w-full sm:mt-32 sm:gap-16 sm:hidden'>
                         <h1 className='text-white font-black xl:text-7xl lg:text-6xl'>What We're<br></br>About</h1>
-                        <h3 className='text-black font-light xl:text-xl p-12 px-16 xl:leading-9 bg-white rounded-md z-10 sm:p-8 sm:py-4 lg:text-lg lg:leading-8'><span className='font-bold'>Studio Azure</span> was founded on the principles of professional, honest work done entirely by hand. We do not rely on the use of any sort of AI tools or bloated and convoluted website builders; instead focusing on ensuring every pixel is placed with intent and purpose.</h3>
+                        <h3 className='text-black font-light xl:text-xl p-12 px-16 xl:leading-9 bg-white rounded-md z-10 sm:p-8 sm:py-4 lg:text-lg lg:leading-8'><span className='font-bold'>Studio Azure</span> was founded on the principles of professional, honest craftsmanship. We are dedicated to creating everything by hand, avoiding any tools that complicate or taint the process. Instead, we ensure that every pixel is placed with intent and purpose.</h3>
                         <div className='flex sm:hidden'>
                             {service == 'design' ? (
                                 <button className='font-bold xl:text-lg rounded-b-md text-center bg-[rgba(255,255,255,1)] p-5 py-3 pt-16 translate-y-[-45px] duration-300 transition-all w-1/3 lg:p-4 lg:py-3 lg:pt-16 lg:text-sm' onClick={() => setService('design')}>Graphic Design</button>
