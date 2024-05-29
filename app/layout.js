@@ -7,7 +7,7 @@ import Background from "./components/Background";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Studio Azure | Home",
+  title: "Studio Azure",
   description: "Bespoke graphic design, software development, and branding.",
 };
 
