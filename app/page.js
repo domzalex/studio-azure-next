@@ -43,39 +43,45 @@ export default function Page() {
         } else return (false)
     }
 
+    const handleError = (message) => {
+        setErrorText(message)
+        setTimeout(() => {
+            setErrorText("")
+        }, 3000)
+    }
+
     const onSubmit = async () => {
 
-        const emailValidated = validateEmail(state.values.email)
+        const emailValidated = validateEmail(values.email)
 
-        if (!state.values.name || !state.values.email || !state.values.message) {
-            setErrorText("Please fill out all fields.")
-            setTimeout(() => {
-                setErrorText("")
-            }, 3000)
-        } else {
-            if (!emailValidated) {
-                setErrorText("Email not valid.")
-                setTimeout(() => {
-                    setErrorText("")
-                }, 3000)
+        if (!values.name || !values.email || !values.message) {
+            handleError("Please fill out all fields.")
+            return
+        }
+        if (!emailValidated) {
+            handleError("Email not valid.")
+            return
+        }
+
+        try {
+            setLoading(true)
+            const response = await fetch('https://www.studioazure.io/api', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(state)
+            })
+            const res = await response.json()
+            if (res.success) {
+                setMessageSent(true)
             } else {
-                setLoading(true)
-                const response = await fetch('https://www.studioazure.io/api', {
-                    method: 'POST',
-                    header: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(state)
-                })
-                const res = await response.json()
-                if (res.success == true) {
-                    setLoading(false)
-                    setMessageSent(true)
-                } else {
-                    setLoading(false)
-                    setErrorText("Error sending message.")
-                }
+                handleError("Error sending message.")
             }
+        } catch (error) {
+            handleError("An error occurred.")
+        } finally {
+            setLoading(false)
         }
 
     }
@@ -142,5 +148,5 @@ export default function Page() {
                 </div>
             </motion.div>
         </AnimatePresence>
-    );
+    )
 }
