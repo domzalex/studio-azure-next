@@ -1,4 +1,4 @@
-import { NextResponse, NextRequest } from "next/server"
+import { NextResponse } from "next/server"
 
 import { transporter, mailConfig } from "../config/nodemailer"
 

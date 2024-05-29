@@ -60,7 +60,7 @@ export default function Page() {
                 }, 3000)
             } else {
                 setLoading(true)
-                const response = await fetch('http://localhost:3000/api', {
+                const response = await fetch('https://www.studioazure.io/api', {
                     method: 'POST',
                     header: {
                         'Content-Type': 'application/json'
