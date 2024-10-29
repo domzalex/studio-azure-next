@@ -73,8 +73,8 @@ transform-origin: 84px 93px;
 
 
 .backdrop-blur-sm {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
 }
 .backdrop-blur-lg {
 
@@ -82,7 +82,7 @@ transform-origin: 84px 93px;
     -webkit-backdrop-filter: blur(8px);
 }
 
-.serviceBg {
+/* .serviceBg {
     background:
         radial-gradient(var(--_g) 100% 25%,var(--_c)) var(--s) var(--s)/var(--_s),
         radial-gradient(var(--_g) 0    75%,var(--_c)) var(--s) var(--s)/var(--_s),
@@ -91,4 +91,11 @@ transform-origin: 84px 93px;
         repeating-conic-gradient(var(--c1) 0 25%,#0000 0 50%) 0 0/var(--_s),
         radial-gradient(var(--_c)) 0 calc(var(--s)/2)/var(--s) var(--s)
         var(--c1);
+} */
+
+.serviceBg {
+    background-image: url('../public/img/swirls.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100vh;
 }

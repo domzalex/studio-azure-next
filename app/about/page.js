@@ -1,9 +1,47 @@
 /* eslint-disable react/no-unescaped-entities */
 'use client'
-import React, {useState} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
+import { ThpaceGL } from 'thpace'
+
+const settings = {
+    colors: ['#fafafa', '#ffffff', '#b5e2fa'],
+    triangleSize: 50,
+    maxFps: 24,
+    pointAnimationSpeed: 25000,
+    particleSettings: {
+        count: [1, 2],
+        opacity: [0.015, 0.5]
+    }
+}
+
+const mobileSettings = {
+    colors: ['#fafafa', '#ffffff', '#b5e2fa'],
+    triangleSize: 25,
+    maxFps: 24,
+    pointAnimationSpeed: 25000,
+    particleSettings: {
+        radius: [1, 2],
+        count: [1, 2],
+        opacity: [0.015, 0.5]
+    }
+}
+
 export default function Page() {
+
+    const canvasRef = useRef(null)
+
+    useEffect(() => {
+        canvasRef.current = document.querySelector('#thpace-bg')
+        if (canvasRef.current) {
+            if (canvasRef.current.getBoundingClientRect().width < 640) {
+                ThpaceGL.create(canvasRef.current, mobileSettings)
+            } else {
+                ThpaceGL.create(canvasRef.current, settings)
+            }
+        }
+    }, [])
 
     const [service, setService] = useState('design')
 
@@ -23,13 +61,13 @@ export default function Page() {
                         <div className='flex sm:hidden'>
                             {service == 'design' ? (
                                 <button className='font-bold xl:text-lg rounded-b-md text-center bg-[rgba(255,255,255,1)] p-5 py-3 pt-16 translate-y-[-45px] duration-300 transition-all w-1/3 lg:p-4 lg:py-3 lg:pt-16 lg:text-sm' onClick={() => setService('design')}>Graphic Design</button>
-                            ) : <button className='font-bold xl:text-lg rounded-bl-md text-center text-gray-600 bg-[rgba(255,255,255,0.55)] p-5 py-3 pt-16 translate-y-[-75px] w-1/3 backdrop-blur-sm transition-all hover:bg-[rgba(255,255,255,0.65)] lg:p-4 lg:py-3 lg:pt-16 lg:text-sm' onClick={() => setService('design')}>Graphic Design</button>}
+                            ) : <button className='font-bold xl:text-lg rounded-bl-md text-center text-gray-600 bg-[rgba(255,255,255,0.55)] p-5 py-3 pt-16 translate-y-[-75px] w-1/3 backdrop-blur-lg transition-all hover:bg-[rgba(255,255,255,0.65)] lg:p-4 lg:py-3 lg:pt-16 lg:text-sm' onClick={() => setService('design')}>Graphic Design</button>}
                             {service == 'website' ? (
                                 <button className='font-bold xl:text-lg rounded-b-md text-center bg-[rgba(255,255,255,1)] p-5 py-3 pt-16 translate-y-[-45px] duration-300 transition-all w-1/3 lg:p-4 lg:py-3 lg:pt-16 lg:text-sm' onClick={() => setService('website')}>Web Development</button>
-                            ) : <button className='font-bold xl:text-lg text-center text-gray-600 bg-[rgba(255,255,255,0.55)] p-5 py-3 pt-16 translate-y-[-75px] w-1/3 backdrop-blur-sm transition-all hover:bg-[rgba(255,255,255,0.65)] lg:p-4 lg:py-3 lg:pt-16 lg:text-sm' onClick={() => setService('website')}>Web Development</button>}
+                            ) : <button className='font-bold xl:text-lg text-center text-gray-600 bg-[rgba(255,255,255,0.55)] p-5 py-3 pt-16 translate-y-[-75px] w-1/3 backdrop-blur-lg transition-all hover:bg-[rgba(255,255,255,0.65)] lg:p-4 lg:py-3 lg:pt-16 lg:text-sm' onClick={() => setService('website')}>Web Development</button>}
                             {service == 'app' ? (
                                 <button className='font-bold xl:text-lg rounded-b-md text-center bg-[rgba(255,255,255,1)] p-5 py-3 pt-16 translate-y-[-45px] duration-300 transition-all w-1/3 lg:p-4 lg:py-3 lg:pt-16 lg:text-sm' onClick={() => setService('app')}>App Development</button>
-                            ) : <button className='font-bold xl:text-lg rounded-br-md text-center text-gray-600 bg-[rgba(255,255,255,0.55)] p-5 py-3 pt-16 translate-y-[-75px] w-1/3 backdrop-blur-sm transition-all hover:bg-[rgba(255,255,255,0.65)] lg:p-4 lg:py-3 lg:pt-16 lg:text-sm' onClick={() => setService('app')}>App Development</button>}
+                            ) : <button className='font-bold xl:text-lg rounded-br-md text-center text-gray-600 bg-[rgba(255,255,255,0.55)] p-5 py-3 pt-16 translate-y-[-75px] w-1/3 backdrop-blur-lg transition-all hover:bg-[rgba(255,255,255,0.65)] lg:p-4 lg:py-3 lg:pt-16 lg:text-sm' onClick={() => setService('app')}>App Development</button>}
                         </div>
                     </div>
                 </motion.div>
@@ -42,6 +80,7 @@ export default function Page() {
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ ease: 'easeInOut', duration: 0.75 }}
             >
+                <canvas id='thpace-bg'></canvas>
                 <AnimatePresence>
                     {service == 'design' && (
                         <motion.div
@@ -54,7 +93,7 @@ export default function Page() {
                         >
                             <div className='w-4/5 flex flex-col gap-8 sm:w-full'>
                                 <h1 className='text-blue-500 font-bold 2xl:text-6xl sm:text-4xl xl:text-5xl lg:text-5xl'>Graphic<br></br>Design 🎨</h1>
-                                <h2 className='text-blue-500 text-xl font-light px-3 border-l border-blue-500 ml-1 leading-9 sm:text-lg'>Our graphic designer is dedicated to creating assets and marketing materials of all kinds such as: 2D graphics, logos, and 3D models, all designed to help you and/or your business.</h2>
+                                <h2 className='text-blue-500 text-xl font-light px-5 py-3 border-l border-blue-500 ml-1 leading-9 sm:text-lg'>Our graphic designer is dedicated to creating assets and marketing materials of all kinds such as: 2D graphics, logos, and 3D models, all designed to help you and/or your business.</h2>
                             </div>
                         </motion.div>
                     )}
@@ -69,7 +108,7 @@ export default function Page() {
                         >
                             <div className='w-4/5 flex flex-col gap-8 sm:w-full'>
                                 <h1 className='text-blue-500 font-bold 2xl:text-6xl sm:text-4xl xl:text-5xl lg:text-5xl'>Website<br></br>Development 🖥️</h1>
-                                <h2 className='text-blue-500 text-xl font-light px-3 border-l border-blue-500 ml-1 leading-9 sm:text-lg'>Our software developer is passionate about building websites. Simple as. Whether it's optimizing an already existing website or building something unique from the ground up, <span className='font-bold'>Studio Azure</span> has you covered.</h2>
+                                <h2 className='text-blue-500 text-xl font-light px-5 py-3 border-l border-blue-500 ml-1 leading-9 sm:text-lg'>Our software developer is passionate about building websites. Simple as. Whether it's optimizing an already existing website or building something unique from the ground up, <span className='font-bold'>Studio Azure</span> has you covered.</h2>
                             </div>
                         </motion.div>
                     )}
@@ -84,7 +123,7 @@ export default function Page() {
                         >
                             <div className='w-4/5 flex flex-col gap-8 sm:w-full'>
                                 <h1 className='text-blue-500 font-bold 2xl:text-6xl sm:text-4xl xl:text-5xl lg:text-5xl'>Mobile App<br></br>Development 📱</h1>
-                                <h2 className='text-blue-500 text-xl font-light px-3 border-l border-blue-500 ml-1 leading-9 sm:text-lg'>Akin to our website development services, we also offer opportunities to have highly-performant and accessible mobile applications built that work cross-platform with both iOS and Android.</h2>
+                                <h2 className='text-blue-500 text-xl font-light px-5 py-3 border-l border-blue-500 ml-1 leading-9 sm:text-lg'>Akin to our website development services, we also offer opportunities to have highly-performant and accessible mobile applications built that work cross-platform with both iOS and Android.</h2>
                             </div>
                         </motion.div>
                     )}
@@ -98,14 +137,14 @@ export default function Page() {
                 transition={{ ease: 'easeInOut', duration: 0.75 }}
             >
                 {service == 'design' ? (
-                    <button className='w-1/3 font-bold border-t border-r h-20 bg-white transition-all duration-300' onClick={() => setService('design')}>Graphic<br></br>Design</button>
-                ) : <button className='w-1/3 font-bold bg-gray-100 border-t h-20 pb-4 translate-y-[15px] transition-all duration-300' onClick={() => setService('design')}>Graphic<br></br>Design</button>}
+                    <button className='w-1/3 font-bold text-sm border-t border-blue-300 backdrop-blur-sm border-r h-20 transition-all duration-300' onClick={() => setService('design')}>Graphic<br></br>Design</button>
+                ) : <button className='w-1/3 font-bold text-sm border-t border-blue-300 backdrop-blur-sm h-20 pb-4 translate-y-[15px] transition-all duration-300 opacity-50' onClick={() => setService('design')}>Graphic<br></br>Design</button>}
                 {service == 'website' ? (
-                    <button className='w-1/3 font-bold border-t border-x h-20 bg-white transition-all duration-300' onClick={() => setService('website')}>Website<br></br>Development</button>
-                ) : <button className='w-1/3 font-bold bg-gray-100 border-t h-20 pb-4 translate-y-[15px] transition-all duration-300' onClick={() => setService('website')}>Website<br></br>Development</button>}
+                    <button className='w-1/3 font-bold text-sm border-t border-blue-300 backdrop-blur-sm border-x h-20 transition-all duration-300' onClick={() => setService('website')}>Website<br></br>Development</button>
+                ) : <button className='w-1/3 font-bold text-sm border-t border-blue-300 backdrop-blur-sm h-20 pb-4 translate-y-[15px] transition-all duration-300 opacity-50' onClick={() => setService('website')}>Website<br></br>Development</button>}
                 {service == 'app' ? (
-                    <button className='w-1/3 font-bold border-t border-l h-20 bg-white transition-all duration-300' onClick={() => setService('app')}>Mobile App<br></br>Development</button>
-                ) : <button className='w-1/3 font-bold bg-gray-100 border-t h-20 pb-4 translate-y-[15px] transition-all duration-300' onClick={() => setService('app')}>Mobile App<br></br>Development</button>}
+                    <button className='w-1/3 font-bold text-sm border-t border-blue-300 backdrop-blur-sm border-l h-20 transition-all duration-300' onClick={() => setService('app')}>Mobile App<br></br>Development</button>
+                ) : <button className='w-1/3 font-bold text-sm border-t border-blue-300 backdrop-blur-sm h-20 pb-4 translate-y-[15px] transition-all duration-300 opacity-50' onClick={() => setService('app')}>Mobile App<br></br>Development</button>}
             </motion.div>
         </div>
     )

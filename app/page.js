@@ -107,8 +107,8 @@ export default function Page() {
                                     <Link className="text-white font-bold bg-black p-4 py-2 rounded-lg hover:bg-blue-500 sm:hover:bg-black" href="/about">Services </Link>
                                 </div>
                             </div>
-                            <div id="contact" className='w-2/5 sm:w-full sm:h-dvh sm:items-center sm:flex sm:max-w-[640px]'>
-                                <div className='relative overflow-hidden w-full flex flex-col gap-5 p-5 rounded-lg bg-white transition-all duration-300     sm:w-full sm:mt-16'>
+                            <div id="contact" className='w-2/5 sm:w-full sm:h-4/5 sm:items-start sm:flex sm:max-w-[640px] sm:mb-[70px]'>
+                                <div className='relative overflow-hidden w-full flex flex-col gap-5 p-5 rounded-lg bg-white transition-all duration-300     sm:w-full sm:mt-0'>
                                     <div className='flex flex-col gap-2'>
                                         <h1 className='font-bold text-xl'>Send us a message!</h1>
                                         <h2 className='font-light text-sm text-gray-400'>or email directly at <a href="mailto:contact@studioazure.io" className='font-bold underline'>contact@studioazure.io</a></h2>
